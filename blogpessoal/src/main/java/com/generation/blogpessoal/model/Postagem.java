@@ -34,9 +34,14 @@ public class Postagem {
 	@UpdateTimestamp
 	private LocalDateTime data;
 
-    @ManyToOne
+	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Usuário usuario;
+    
 
     public Long getId() {
         return this.id;
