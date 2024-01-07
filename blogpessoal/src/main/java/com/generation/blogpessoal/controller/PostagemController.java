@@ -87,5 +87,12 @@ public class PostagemController {
 		
 		postagemRepository.deleteById(id);				
 	}
-	
+
+	public TemaRepository getTemaRepository() {
+		return temaRepository;
+	}
+
+	public void setTemaRepository(TemaRepository temaRepository) {
+		this.temaRepository = temaRepository;
+	}
 }

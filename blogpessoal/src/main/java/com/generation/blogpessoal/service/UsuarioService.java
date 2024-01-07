@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.generation.blogpessoal.model.UsuarioLogin;
-import com.generation.blogpessoal.model.Usuário;
+import com.generation.blogpessoal.model.Usuario;
 import com.generation.blogpessoal.repository.UsuarioRepository;
 import com.generation.blogpessoal.security.JwtService;
 
@@ -28,7 +28,7 @@ public class UsuarioService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-	public Optional<Usuário> cadastrarUsuario(Usuário usuario) {
+	public Optional<Usuario> cadastrarUsuario(Usuario usuario) {
 
 		if (usuarioRepository.findByUsuario(usuario.getUsuario()).isPresent())
 			return Optional.empty();
@@ -39,11 +39,11 @@ public class UsuarioService {
 	
 	}
 
-	public Optional<Usuário> atualizarUsuario(Usuário usuario) {
+	public Optional<Usuario> atualizarUsuario(Usuario usuario) {
 		
 		if(usuarioRepository.findById(usuario.getId()).isPresent()) {
 
-			Optional<Usuário> buscaUsuario = usuarioRepository.findByUsuario(usuario.getUsuario());
+			Optional<Usuario> buscaUsuario = usuarioRepository.findByUsuario(usuario.getUsuario());
 
 			if ( (buscaUsuario.isPresent()) && ( buscaUsuario.get().getId() != usuario.getId()))
 				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já existe!", null);
@@ -70,7 +70,7 @@ public class UsuarioService {
 		if (authentication.isAuthenticated()) {
 
             // Busca os dados do usuário
-			Optional<Usuário> usuario = usuarioRepository.findByUsuario(usuarioLogin.get().getUsuario());
+			Optional<Usuario> usuario = usuarioRepository.findByUsuario(usuarioLogin.get().getUsuario());
 
             // Se o usuário foi encontrado
 			if (usuario.isPresent()) {

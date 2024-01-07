@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.generation.blogpessoal.model.UsuarioLogin;
-import com.generation.blogpessoal.model.Usuário;
+import com.generation.blogpessoal.model.Usuario;
 import com.generation.blogpessoal.repository.UsuarioRepository;
 import com.generation.blogpessoal.service.UsuarioService;
 
@@ -34,14 +34,14 @@ public class UsuarioController {
 	private UsuarioRepository usuarioRepository;
 	
 	@GetMapping("/all")
-	public ResponseEntity <List<Usuário>> getAll(){
+	public ResponseEntity <List<Usuario>> getAll(){
 		
 		return ResponseEntity.ok(usuarioRepository.findAll());
 		
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuário> getById(@PathVariable Long id) {
+	public ResponseEntity<Usuario> getById(@PathVariable Long id) {
 		return usuarioRepository.findById(id)
 			.map(resposta -> ResponseEntity.ok(resposta))
 			.orElse(ResponseEntity.notFound().build());
@@ -57,7 +57,7 @@ public class UsuarioController {
     
 
 	@PostMapping("/cadastrar")
-	public ResponseEntity<Usuário> postUsuario(@RequestBody @Valid Usuário usuario) {
+	public ResponseEntity<Usuario> postUsuario(@RequestBody @Valid Usuario usuario) {
 
 		return usuarioService.cadastrarUsuario(usuario)
 			.map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(resposta))
@@ -66,7 +66,7 @@ public class UsuarioController {
 	}
 
 	@PutMapping("/atualizar")
-	public ResponseEntity<Usuário> putUsuario(@Valid @RequestBody Usuário usuario) {
+	public ResponseEntity<Usuario> putUsuario(@Valid @RequestBody Usuario usuario) {
 		
 		return usuarioService.atualizarUsuario(usuario)
 			.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))

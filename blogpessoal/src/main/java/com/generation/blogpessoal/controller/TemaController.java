@@ -72,7 +72,7 @@ public class TemaController {
         if(tema.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         
-        temaRepository.deleteById(id);              
+        temaRepository.deleteById(id);    
     }
 
 }
